@@ -3,23 +3,81 @@
 	"displayName": "pub-query",
 	"description": "一个帮助开发者快速查找Flutter/Dart依赖的插件",
 	"version": "0.0.1",
+	"publisher": "frantic",
+	"keywords": ["flutter","yaml","tools"],
 	"engines": {
-		"vscode": "^1.49.0"
+		"vscode": "^1.27.0"
 	},
 	"categories": [
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:pub-query.helloWorld"
+		"onCommand:pub-query.helloWorld",
+		"onCommand:pub-query.queryVersion"
 	],
-	"main": "./extension.js",
+	"main": "./src/extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "pub-query.helloWorld",
 				"title": "Hello World"
+			},
+			{
+				"command": "pub-query.queryVersion",
+				"title": "Query Version form Pub.dev"
 			}
-		]
+		],
+		"keybindings":[
+			{
+				"command": "pub-query.queryVersion",
+				"key": "alt+p",
+				"mac": "alt+p",
+				"when": "editorTextFocus"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+				 "when":"editorFocus",
+				 "command": "pub-query.queryVersion",
+				 "group": "navigation"
+				}
+			],
+			"editor/title": [
+				{
+                    "when": "editorFocus && resourceLangId == yaml",
+                    "command": "pub-query.queryVersion",
+                    "group": "navigation"
+                }
+			]
+		},
+		"configuration":{
+			"title": "Pub-Query",
+			"properties": {
+				"pub-query.originUrl":{
+					"type":"string",
+					"default":"https://pub.flutter-io.cn/",
+					"description": "设置默认的Pub地址"
+				}
+			}
+		},
+		"viewsContainers": {
+			"activitybar": [
+			{
+				"id": "query-pkgs",
+				"title": "查询依赖",
+				"icon": "./resources/search.svg"
+			}
+			]
+		},
+		"views": {
+			"query-pkgs":[
+				{
+					"id": "search-包名",
+					"name": "搜索"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"lint": "eslint .",
@@ -36,5 +94,6 @@
 		"mocha": "^8.1.3",
 		"typescript": "^4.0.2",
 		"vscode-test": "^1.4.0"
-	}
+	},
+	"homepage": "https://github.com/franticn/pub-query-vscode"
 }
