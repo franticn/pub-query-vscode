@@ -1,38 +1,18 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
-
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 
 /**
  * @param {vscode.ExtensionContext} context
  */
-function activate(context) {
-	
-	console.log('Congratulations, your extension "pub-query" is now active!');
+exports.activate = function (context) {
+	console.log('插件被激活了')
+	// console.log(vscode)
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('pub-query.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from pub-query!');
-	});
-
-	context.subscriptions.push(disposable);
+	require('./completion')(context) // 由当前光标所在位置来判断是否需要查询依赖库
+	require('./hover')(context) // 查询悬浮
+	require('./test')(context) // 查询悬浮
 }
-exports.activate = activate;
 
-
-function deactivate() {
-
+exports.deactivate = function (context) {
 	console.log('your extension "pub-query" is now deactivate!')
 }
 
-module.exports = {
-	activate,
-	deactivate
-}
