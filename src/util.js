@@ -275,6 +275,10 @@ const util = {
         let s1 = this.formatToSpecialJSON(obj1, '', true);
         let s2 = this.formatToSpecialJSON(obj2, '', true);
         return s1 === s2;
+    },
+    isInDependenciesBlock() {
+
+        return true
     }
 }
 

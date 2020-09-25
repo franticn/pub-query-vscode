@@ -16,13 +16,11 @@ function provideHover(document, position, token) {
     const word        = document.getText(document.getWordRangeAtPosition(position));
 
     if (/\/pubspec\.yaml$/.test(fileName)) {
-        console.log('进入provideHover方法');
         const json = document.getText();
         if (new RegExp(`"(dependencies|dev_dependencies)":\\s*?\\{[\\s\\S]*?${word.replace(/\//g, '\\/')}[\\s\\S]*?\\}`, 'gm').test(json)) {
             let destPath = `${workDir}/node_modules/${word.replace(/"/g, '')}/package.json`;
             if (fs.existsSync(destPath)) {
                 const content = require(destPath);
-                console.log('hover已生效');
                 // hover内容支持markdown语法
                 return new vscode.Hover(`* **名称**：${content.name}\n* **版本**：${content.version}\n* **许可协议**：${content.license}`);
             }
