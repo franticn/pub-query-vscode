@@ -1,9 +1,14 @@
 # Change Log
 
-All notable changes to the "pub-query" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
+## [Release]
 
-- Initial release
+- ### 0.0.1
+
+  - 完成基础功能
+  - 支持从[pub.dev](https://pub.dev/)或者[pub.flutter-io.cn](https://pub.flutter-io.cn/)上查询所需要的依赖库
+
+  
+
+  

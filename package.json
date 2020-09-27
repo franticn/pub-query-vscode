@@ -103,5 +103,13 @@
 	"dependencies": {
 		"axios": "0.20.0"
 	},
+	"license": "SEE LICENSE IN LICENSE.txt",
+    "bugs": {
+        "url": "https://github.com/franticn/pub-query-vscode/issues"
+    },
+	"repository": {
+        "type": "git",
+        "url": "https://github.com/franticn/pub-query-vscode"
+	},
 	"homepage": "https://github.com/franticn/pub-query-vscode"
 }
